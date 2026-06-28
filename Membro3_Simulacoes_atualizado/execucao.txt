@@ -1,0 +1,35 @@
+========================================================================
+SIMULAÇÕES — MEMBRO 3 | CONVERSOR BOOST
+========================================================================
+SID                         = 568274
+delta                       = 0.0407450186
+L0                          = 0.006244470 H
+C                           = 0.001040745 F
+R                           = 104.074501861 ohm
+u_bar                       = 0.500000
+x_bar = [iL_bar, vC_bar]^T  = [0.922416137 A, 48.000000 V]^T
+
+A =
+[[  0.         -80.75212927]
+ [480.42507152  -9.23232997]]
+B =
+[[7752.2044095 ]
+ [-886.30367749]]
+C = [[0. 1.]]
+D = [[0.]]
+
+RESULTADOS DA COMPARAÇÃO LINEAR × NÃO LINEAR
+------------------------------------------------------------------------
+Degrau de  1.0% | Delta_u = 0.00500 | RMSE = 0.027002 V | Erro máximo = 0.078589 V
+  vC final: não linear = 48.484249 V | linear = 48.480541 V | faixa de iL não linear = [0.763404, 1.133017] A
+Degrau de  2.5% | Delta_u = 0.01250 | RMSE = 0.154039 V | Erro máximo = 0.476046 V
+  vC final: não linear = 49.231382 V | linear = 49.201352 V | faixa de iL não linear = [0.520484, 1.458521] A
+Degrau de  5.0% | Delta_u = 0.02500 | RMSE = 0.491357 V | Erro máximo = 1.747249 V
+  vC final: não linear = 50.525425 V | linear = 50.402705 V | faixa de iL não linear = [0.102241, 2.029230] A
+
+Arquivos gerados em: /mnt/data/Membro3_Simulacoes_atualizado/resultados
+
+Interpretação sugerida:
+- Quanto menores RMSE e erro máximo, melhor é a aproximação linear.
+- A faixa de validade deve ser discutida a partir do crescimento do erro
+  à medida que a amplitude do degrau aumenta.
