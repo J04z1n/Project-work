@@ -6,7 +6,7 @@ from matplotlib.patches import Rectangle, Circle
 from scipy import signal
 from scipy.integrate import solve_ivp
 
-# Dados consolidados dos membros 1 a 4
+# Dados apresentados anteriormente
 Es = 24.0
 alpha = 0.01
 L0 = 0.0062444701116
