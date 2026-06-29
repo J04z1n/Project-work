@@ -1,20 +1,13 @@
-"""Simulações do Membro 3 — Conversor Boost DC-DC.
+"""
+O que esse módulo faz?
+-Implementa o modelo médio não linear.
+-Implementa o modelo linearizado.
+-Simula degraus de 1%, 2,5% e 5% em torno de u_bar = 0.5.
+-Comparar v_C do modelo não linear com v_bar_C + Delta v_C do linear.
+-Calcular RMSE e erro máximo para discutir a validade da linearização.
 
-Escopo deste arquivo:
-    1. Implementar o modelo médio não linear.
-    2. Implementar o modelo linearizado fornecido pelo Membro 2.
-    3. Simular degraus de 1%, 2,5% e 5% em torno de u_bar = 0.5.
-    4. Comparar v_C do modelo não linear com v_bar_C + Delta v_C do linear.
-    5. Calcular RMSE e erro máximo para discutir a validade da linearização.
-
-Não contém Root Locus, função de transferência, análise de polos ou controlador;
-essas são responsabilidades dos membros 4 e 5.
-
-Dependências:
+Dependências: (instale professora Michela, pode ser necessário instalar outras bibliotecas como Scipy e SYMPY se ainda não tiver)
     pip install numpy scipy matplotlib
-
-Execução:
-    python simulacoes_membro3.py
 """
 
 from __future__ import annotations
@@ -26,23 +19,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
-
-# ============================================================================
-# Dados recebidos dos membros 1 e 2
-# ============================================================================
+# infromaç~~oes dos modelos
 SID = 568274
 ES = 24.0                 # V
 ALPHA = 0.01              # A^-2
 U_BAR = 0.50              # duty cycle nominal (adimensional)
 
-# Os valores de L0, C e R são regenerados da mesma forma documentada pelo Membro 1.
 rng = np.random.default_rng(SID)
 DELTA = float(rng.standard_normal())
 L0 = 6e-3 * (1.0 + DELTA)       # H
 C_CAP = 1e-3 * (1.0 + DELTA)    # F
 R_LOAD = 100.0 * (1.0 + DELTA)  # ohm
 
-# Ponto de equilíbrio definido pelo Membro 2.
+# Ponto de equilíbrio definido na linearizção
 V_BAR = ES / (1.0 - U_BAR)
 I_BAR = ES / (R_LOAD * (1.0 - U_BAR) ** 2)
 X_BAR = np.array([I_BAR, V_BAR], dtype=float)
@@ -89,10 +78,7 @@ class Resultado:
     i_min_nl: float
     i_max_nl: float
 
-
-# ============================================================================
 # Modelos do sistema
-# ============================================================================
 def duty_absoluto(t: float, delta_u: float) -> float:
     """Duty cycle absoluto aplicado ao modelo não linear.
 
@@ -120,10 +106,7 @@ def modelo_linearizado(t: float, delta_x: np.ndarray, delta_u: float) -> np.ndar
     entrada = delta_u if t >= T_INICIO else 0.0
     return A @ delta_x + B[:, 0] * entrada
 
-
-# ============================================================================
 # Simulação e comparação
-# ============================================================================
 def simular_caso(percentual: float, tempo: np.ndarray) -> tuple[Resultado, dict[str, np.ndarray]]:
     """Simula um degrau percentual relativo a u_bar nos dois modelos."""
     delta_u = U_BAR * percentual / 100.0
@@ -212,7 +195,7 @@ def salvar_grafico(resultado: Resultado, dados: dict[str, np.ndarray], pasta: Pa
 
 def imprimir_dados_base() -> None:
     print("=" * 72)
-    print("SIMULAÇÕES — MEMBRO 3 | CONVERSOR BOOST")
+    print("SIMULAÇÕES | CONVERSOR BOOST")
     print("=" * 72)
     print(f"SID                         = {SID}")
     print(f"delta                       = {DELTA:.10f}")
