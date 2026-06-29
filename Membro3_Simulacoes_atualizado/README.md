@@ -1,4 +1,4 @@
-# Membro 3 — Simulações linear × não linear
+Simulações linear × não linear
 
 Este pacote contém **somente** a implementação e as simulações que cabem ao membro 3:
 
@@ -6,8 +6,6 @@ Este pacote contém **somente** a implementação e as simulações que cabem ao
 - modelo linearizado numérico em variáveis de desvio;
 - comparação em malha aberta para degraus de 1%, 2,5% e 5% em torno de `u_bar = 0.5`;
 - geração de gráficos e cálculo de RMSE/erro máximo.
-
-Ele **não** contém função de transferência, polos, zeros, Root Locus, projeto de controlador ou malha fechada, pois essas partes são dos membros 4 e 5.
 
 ## Instalação
 
@@ -18,7 +16,7 @@ python -m pip install -r requirements.txt
 ## Execução
 
 ```bash
-python simulacoes_membro3.py
+python simulacoes.py
 ```
 
 Os gráficos serão salvos em `resultados/`.
